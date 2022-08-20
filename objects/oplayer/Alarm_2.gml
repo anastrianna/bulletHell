@@ -1,0 +1,3 @@
+/// @desc Basic Attack
+
+doNothing();

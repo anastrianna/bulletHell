@@ -1,6 +1,6 @@
 /// @description Makes display manager follow player
 if(!instance_exists(oPlayer) || room != rGame) { exit; }
-show_debug_message("yosh");
+
 //Make display follow player
 var xx = oPlayer.x;
 var yy = oPlayer.y;

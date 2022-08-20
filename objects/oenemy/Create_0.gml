@@ -1,6 +1,6 @@
 /// @desc
+event_inherited();
 
 maxHP = 4;
 currentHP = maxHP;
-
-movSpeed = 3;
+value = 1;

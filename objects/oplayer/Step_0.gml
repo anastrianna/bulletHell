@@ -37,11 +37,17 @@ if(xMov != 0 || yMov != 0) {
 switch(state) {
 	case "hitstun":
 		image_index = 1;
-		if(alarm[0] < 0) {
-			alarm[0] = room_speed * 0.5;	
+		if(alarm[1] < 0) {
+			alarm[1] = room_speed * hitStun;	
 		}
 		break;
 	case "default":
 		image_index = 0;
+		
+		if(alarm[2] < 0) {
+			var atkSpeed = baseAtkSpeed * (100/(atkSpeedBuff + 100));
+
+			alarm[2] = room_speed * atkSpeed;
+		}
 		break;
 }

@@ -130,22 +130,14 @@ function rectangleWithOutline(startx, starty, endx, endy, outlineColor, fillColo
 ///@desc Returns new x value
 ///@arg uix X relative to top left
 function uiX(uix) {
-	var viewWidth = camera_get_view_width(view_camera[0]);
-
-	var offSet = viewWidth/2;
-
-	return global.controller.player.x - offSet + uix;
+	return camera_get_view_x(view_camera[0]) + uix;
 }
 
 ///@func uiY()
 ///@desc Returns new y value 
 ///@arg uiy Y relative to top left
 function uiY(uiy) {
-	var viewHeight = camera_get_view_height(view_camera[0]);
-
-	var offSet = viewHeight/2;
-
-	return global.controller.player.y - offSet + uiy;
+	return camera_get_view_y(view_camera[0]) + uiy;
 }
 
 ///@arg offx x offset
