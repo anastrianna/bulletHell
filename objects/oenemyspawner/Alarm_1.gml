@@ -19,7 +19,7 @@ if(minutes == 17) {
 
 	var xx, yy;
 
-	switch(quadrant) {
+	switch(irandom(3)) {
 		case 0:
 			xx = random(vWidth) + camx;
 			yy = camy - offset;
@@ -37,10 +37,6 @@ if(minutes == 17) {
 			yy = random(vHeight) + camy;
 			break;
 	}
-
-	if(quadrant == 3) {
-		quadrant = 0;	
-	} else { quadrant++; }
 	
 	instance_create_layer(xx, yy, "Instances", bossType);
 }

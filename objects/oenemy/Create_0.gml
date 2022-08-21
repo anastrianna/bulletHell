@@ -1,9 +1,9 @@
 /// @desc
 event_inherited();
 
-maxHP = 20;
+maxHP = 10;
 currentHP = maxHP;
-value = 1;
+value = 2;
 infected = -1;
 infested = false;
 weakened = false;
