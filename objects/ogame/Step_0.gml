@@ -10,7 +10,7 @@ if(room == rInit) {
 	}
 } else if(room == rGame) {
 	if(!instance_exists(oPlayer)) { 
-		instance_create_layer(0, 0, "Instances", oInfluenza);
+		instance_create_layer(0, 0, "Instances", playerUnit);
 	} else if(!instance_exists(oUI)) { 
 		instance_create_layer(0, 0, "Processes", oUI);
 	} else if(!instance_exists(oEnemySpawner)) { 

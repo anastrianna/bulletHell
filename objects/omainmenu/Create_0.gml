@@ -3,6 +3,7 @@ lastButton = 0;
 enum menuPage {
 	main,
 	settings,
+	start,
 	audio,
 	video,
 	controls,
@@ -10,7 +11,7 @@ enum menuPage {
 }
 
 dsMenuMain = createGrid(
-	["PLAY", menuElementType.scriptRunner, startGame, false], 
+	["PLAY", menuElementType.pageTransfer, menuPage.start, false], 
 	["UPGRADES", menuElementType.scriptRunner, toggleUpgradeMenu, false],
 	["SETTINGS", menuElementType.pageTransfer, menuPage.settings],
 	["EXIT", menuElementType.scriptRunner, exitGame, false]
@@ -21,6 +22,11 @@ dsSettings = createGrid(
 	["VIDEO", menuElementType.pageTransfer, menuPage.video],
 	["CONTROLS", menuElementType.pageTransfer, menuPage.controls],
 	["BACK", menuElementType.pageTransfer, menuPage.main]
+);
+
+dsGameStart = createGrid(
+	["INFECTION", menuElementType.shift, changePlayerUnit, 0, ["INFLUENZA", "HIV"]],
+	["CONFIRM", menuElementType.scriptRunner, startGame, false], 
 );
 
 dsMenuAudio = createGrid(
@@ -42,9 +48,9 @@ dsMenuControls = createGrid(
 );
 
 page = 0;
-menuPages = [dsMenuMain, dsSettings, dsMenuAudio, dsMenuVideo, dsMenuControls];
+menuPages = [dsMenuMain, dsSettings, dsGameStart, dsMenuAudio, dsMenuVideo, dsMenuControls];
 settingsStart = 2;
-settingsEnd = 4;
+settingsEnd = 5;
 
 var i = 0, arrayLen = array_length_1d(menuPages);
 repeat (arrayLen) {

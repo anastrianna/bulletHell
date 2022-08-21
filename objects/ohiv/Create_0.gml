@@ -2,7 +2,7 @@
 
 event_inherited();
 
-baseAtkSpeed = 2;
-radius = 64;
+baseAtkSpeed = 1.5;
+radius = 100;
 
 targetsInRange = ds_list_create();

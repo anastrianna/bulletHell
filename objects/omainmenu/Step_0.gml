@@ -15,7 +15,7 @@ switch(dsGrid[# 1, menuOption[page]]){
 		var hInput = menuHMov;
 		var currentArray = dsGrid[# 4, menuOption[page]]
 		dsGrid[# 3, menuOption[page]] += hInput*.01;
-		dsGrid[# 3, menuOption[page]] = clamp(dsGrid[# 3, menuOption[page]], 0, 1);
+		dsGrid[# 3, menuOption[page]] = clamp(dsGrid[# 3, menuOption[page]], currentArray[0], currentArray[1]);
 		script_execute(dsGrid[# 2, menuOption[page]], dsGrid[# 3, menuOption[page]]);
 		break;
 	case menuElementType.toggle:

@@ -1,4 +1,4 @@
-/// @desc
+/// @desc Movement
 speed = 0;
 
 var temp = irandom(3);
@@ -14,3 +14,5 @@ if(!slowed) {
 	
 	speed = movSpeed*((100-oPlayer.slowPower)/100); 
 }
+
+if(infected > -1 && alarm[1] < 0) { alarm[1] = room_speed * 1; }

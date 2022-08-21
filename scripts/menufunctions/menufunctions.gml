@@ -38,3 +38,13 @@ function changeWindowMode(value) {
 		case 1: window_set_fullscreen(false); break;
 	}
 }
+
+///@func changePlayerUnit(value)
+///@desc Change player unit
+///@arg value Boolean
+function changePlayerUnit(value) {
+	switch(value) {
+		case 0: oGame.playerUnit = oInfluenza; break;
+		case 1: oGame.playerUnit = oHIV; break;
+	}
+}

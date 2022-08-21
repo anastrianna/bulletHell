@@ -1,5 +1,7 @@
-/// @desc
+/// @desc Spawn enemies
 
+#region Enemy spawn point
+//Calculate enemy spawn position
 var vWidth = camera_get_view_width(view_camera[0]);
 var vHeight = camera_get_view_height(view_camera[0]);
 var camx = camera_get_view_x(view_camera[0]);
@@ -27,8 +29,13 @@ switch(quadrant) {
 		break;
 }
 
-instance_create_layer(xx, yy, "Instances", oEnemy);
-
 if(quadrant == 3) {
 	quadrant = 0;	
 } else { quadrant++; }
+#endregion Enemy spawn point
+
+var difficulty = maxTime - minutes;
+
+var enemy = instance_create_layer(xx, yy, "Instances", oNeutrophil);
+enemy.maxHP = enemy.maxHP * difficulty;
+enemy.currentHP = enemy.maxHP;

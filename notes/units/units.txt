@@ -1,0 +1,18 @@
+Enemy types:
+
+ex) name: basic description, method of attack
+	visual description
+
+1) neutrophils: basic white blood cell, surround and attack
+	clear in color, like goo slopping around
+2) b lymphocyte: creates antibodies, fires antibodies
+	like a clear egg with a purple yolk
+3) Granulocytes: contain enzyme granules, release granules to attack like bees
+	think cell meets beehive
+	
+Boss concepts:
+
+1) Pill: some sort of medicine, ideas appreciated
+	could either go with literal pill or more osmosis jones style
+2) Soap: foamy monster, bubbles probably
+	maybe like a half used bar of soap with a cloud of bubbles around it

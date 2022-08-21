@@ -23,11 +23,15 @@ switch(state) {
 			if(i == upgradeChoice) { c = c_white; }
 			
 			rectangleWithOutline(startx, starty, startx+upgradeBoxWidth, starty+upgradeBoxHeight, c, c_grey);
-			draw_text(startx+(upgradeBoxWidth/2), starty+(upgradeBoxHeight/2), global.upgrades[# 0, row]);
+			
+			var upgradeText = global.upgrades[# upgradesColumns.name, row];
+			if(global.upgrades[# upgradesColumns.maxTier, row] > 1) { upgradeText = fixUpgradeName(upgradeText, global.upgrades[# upgradesColumns.currentTier, row]); }
+			draw_text(startx+(upgradeBoxWidth/2), starty+(upgradeBoxHeight/2), upgradeText);
 			
 			startx += xBuffer;
 		}
 		
+		//Draw upgrade confirm button
 		if(upgradeChoice != -1) {
 			var confirmBoxWidth = vWidth/7;
 			var confirmBoxHeight = vHeight/10;
@@ -38,6 +42,42 @@ switch(state) {
 			draw_text(startx+(confirmBoxWidth/2), starty+(confirmBoxHeight/2), "Confirm");
 		}
 		
+		break;
+	case "mutation":
+		//Draw upgrade choices
+		var choiceCount = ds_list_size(upgradeList);
+		var upgradeBoxWidth = vWidth/6;
+		var upgradeBoxHeight = vHeight/2;
+		var xBuffer = vWidth/(choiceCount+1);
+		var startx = xBuffer - upgradeBoxWidth/2;
+		var starty = (vHeight - upgradeBoxHeight)/2;
+
+		for(var i = 0; i < choiceCount; i++) {
+			var row = ds_grid_value_y(global.upgrades, 0, 0, 0, ds_grid_height(global.upgrades), upgradeList[| i]);
+			
+			var c = c_red;
+			//If choice is selected, highlight
+			if(i == upgradeChoice) { c = c_white; }
+			
+			rectangleWithOutline(startx, starty, startx+upgradeBoxWidth, starty+upgradeBoxHeight, c, c_grey);
+			
+			var upgradeText = upgradeList[| i];
+			
+			draw_text(startx+(upgradeBoxWidth/2), starty+(upgradeBoxHeight/2), upgradeText);
+			
+			startx += xBuffer;
+		}
+		
+		//Draw upgrade confirm button
+		if(upgradeChoice != -1) {
+			var confirmBoxWidth = vWidth/7;
+			var confirmBoxHeight = vHeight/10;
+			startx = (vWidth - confirmBoxWidth)/2;
+			starty = vHeight - ((vHeight - upgradeBoxHeight)/2) + confirmBoxHeight/2;
+			
+			rectangleWithOutline(startx, starty, startx+confirmBoxWidth, starty+confirmBoxHeight, c_red, c_grey);
+			draw_text(startx+(confirmBoxWidth/2), starty+(confirmBoxHeight/2), "Confirm");
+		}
 		break;
 	case "default":
 		//Draw timer

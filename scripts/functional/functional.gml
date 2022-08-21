@@ -179,6 +179,16 @@ function randomControllerName() {
 	return name;
 }
 
+///@func rollChance(p) 
+///@desc Roll a percent chance
+///@arg p Percent chance of success
+function rollChance(p) {
+	var roll = irandom(99) + 1;
+	if(roll <= p) {
+		return true;
+	} else { return false; }
+}
+
 ///func doNothing()
 ///desc Do nothing
 function doNothing() {

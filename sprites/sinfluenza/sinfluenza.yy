@@ -1,21 +1,21 @@
 {
   "bboxMode": 0,
-  "collisionKind": 1,
+  "collisionKind": 0,
   "type": 0,
-  "origin": 4,
+  "origin": 9,
   "preMultiplyAlpha": false,
   "edgeFiltering": false,
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
-  "bbox_left": 4,
-  "bbox_right": 60,
-  "bbox_top": 3,
-  "bbox_bottom": 59,
+  "bbox_left": 21,
+  "bbox_right": 64,
+  "bbox_top": 33,
+  "bbox_bottom": 71,
   "HTile": false,
   "VTile": false,
   "For3D": false,
-  "width": 64,
-  "height": 64,
+  "width": 100,
+  "height": 100,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"05b57df9-cc48-4e6c-a8c2-193918d474d5","path":"sprites/sInfluenza/sInfluenza.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"05b57df9-cc48-4e6c-a8c2-193918d474d5","path":"sprites/sInfluenza/sInfluenza.yy",},"LayerId":{"name":"1b8f5f45-e610-4443-9e8e-3a840206fe25","path":"sprites/sInfluenza/sInfluenza.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"sInfluenza","path":"sprites/sInfluenza/sInfluenza.yy",},"resourceVersion":"1.0","name":"05b57df9-cc48-4e6c-a8c2-193918d474d5","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"b9c39286-b618-49f6-88c8-5edf4f7bef43","path":"sprites/sInfluenza/sInfluenza.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"b9c39286-b618-49f6-88c8-5edf4f7bef43","path":"sprites/sInfluenza/sInfluenza.yy",},"LayerId":{"name":"1b8f5f45-e610-4443-9e8e-3a840206fe25","path":"sprites/sInfluenza/sInfluenza.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"sInfluenza","path":"sprites/sInfluenza/sInfluenza.yy",},"resourceVersion":"1.0","name":"b9c39286-b618-49f6-88c8-5edf4f7bef43","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"aec92d0b-93e8-402e-a35f-4d0e596b506a","path":"sprites/sInfluenza/sInfluenza.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"aec92d0b-93e8-402e-a35f-4d0e596b506a","path":"sprites/sInfluenza/sInfluenza.yy",},"LayerId":{"name":"746700cb-e33b-497b-a783-9f77ed84cf15","path":"sprites/sInfluenza/sInfluenza.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"sInfluenza","path":"sprites/sInfluenza/sInfluenza.yy",},"resourceVersion":"1.0","name":"aec92d0b-93e8-402e-a35f-4d0e596b506a","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"015f6bac-acf6-4a68-b7f1-e10bc96caabb","path":"sprites/sInfluenza/sInfluenza.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"015f6bac-acf6-4a68-b7f1-e10bc96caabb","path":"sprites/sInfluenza/sInfluenza.yy",},"LayerId":{"name":"746700cb-e33b-497b-a783-9f77ed84cf15","path":"sprites/sInfluenza/sInfluenza.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"sInfluenza","path":"sprites/sInfluenza/sInfluenza.yy",},"resourceVersion":"1.0","name":"015f6bac-acf6-4a68-b7f1-e10bc96caabb","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"sInfluenza","path":"sprites/sInfluenza/sInfluenza.yy",},
@@ -44,8 +44,8 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"MomentsEventKeyframe",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"2ac397af-a227-499c-82f5-c3c9f71d0da5","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"05b57df9-cc48-4e6c-a8c2-193918d474d5","path":"sprites/sInfluenza/sInfluenza.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
-            {"id":"327cfe01-cf38-4c4c-b245-99f8dbab102e","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"b9c39286-b618-49f6-88c8-5edf4f7bef43","path":"sprites/sInfluenza/sInfluenza.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
+            {"id":"450984e2-4306-4267-b934-e1c9f92c2880","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"aec92d0b-93e8-402e-a35f-4d0e596b506a","path":"sprites/sInfluenza/sInfluenza.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
+            {"id":"0f2af00d-d636-497e-b214-7bcea1a98131","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"015f6bac-acf6-4a68-b7f1-e10bc96caabb","path":"sprites/sInfluenza/sInfluenza.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"SpriteFrameKeyframe",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,8 +58,8 @@
     "backdropHeight": 768,
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
-    "xorigin": 32,
-    "yorigin": 32,
+    "xorigin": 46,
+    "yorigin": 51,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"sInfluenza","path":"sprites/sInfluenza/sInfluenza.yy",},
@@ -69,7 +69,7 @@
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"1b8f5f45-e610-4443-9e8e-3a840206fe25","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"746700cb-e33b-497b-a783-9f77ed84cf15","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {

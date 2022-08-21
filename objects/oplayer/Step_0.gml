@@ -2,6 +2,11 @@
 
 getInput();
 
+var row = ds_grid_value_y(global.upgrades, 0, 0, 0, ds_grid_height(global.upgrades), "Health Regen");
+if(global.upgrades[# upgradesColumns.currentTier, row]) {
+	if(alarm[3] < 0) { alarm[3] = room_speed * 30; }
+}
+
 //Movement
 //Alter speed if moving at an angle
 var xMov = hMov * movSpeed;
@@ -29,6 +34,8 @@ if(place_meeting(x, y+yMov, oBarrier)) {
 }
 
 if(xMov != 0 || yMov != 0) {
+	playerFaceDirection(xMov, yMov);
+	
 	x += xMov;
 	y += yMov;
 }
