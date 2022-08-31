@@ -122,8 +122,8 @@ function createSquareButton(xBox, yBox, size, text, script, color, arguments) {
 ///@arg outlineColor Color of box outline
 ///@arg fillColor Background color of box
 function rectangleWithOutline(startx, starty, endx, endy, outlineColor, fillColor) {
-	draw_rectangle_color(startx, starty, endx, endy, outlineColor, outlineColor, outlineColor, outlineColor, true);
 	draw_rectangle_color(startx, starty, endx, endy, fillColor, fillColor, fillColor, fillColor, false);
+	draw_rectangle_color(startx, starty, endx, endy, outlineColor, outlineColor, outlineColor, outlineColor, true);
 }
 
 ///@func uiX()

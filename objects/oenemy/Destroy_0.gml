@@ -1,6 +1,12 @@
 /// @desc
+oUI.kills += 1;
 
-oPlayer.experience += value;
+repeat(value) {
+	var spawnx = x + irandom(20) - 10;
+	var spawny = y + irandom(20) - 10;
+	
+	instance_create_layer(spawnx, spawny, "Instances", oDNA);
+}
 
 if(infested) {
 	for(var i = 0; i < 5+oPlayer.bonusProjectiles; i++) {
@@ -9,5 +15,11 @@ if(infested) {
 		spore.movSpeed = oPlayer.projectileSpeed;
 		spore.lifeSpan = oPlayer.projectileLifeSpan;
 		spore.direction = random(360);
+	}
+}
+
+with(oCancerChild) {
+	if(target.id == other.id) {
+		target = -1;
 	}
 }

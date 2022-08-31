@@ -66,8 +66,36 @@ if(pause) {
 					if(point_in_rectangle(mouse_x, mouse_y, startx, starty, startx+confirmBoxWidth, starty+confirmBoxHeight)) {
 						pauseToggle();
 						
-						ds_list_add(oPlayer.activeMutations, upgradeList[| upgradeChoice]);
+						applyMutation(upgradeList[| upgradeChoice]);
 					}
+				}
+			}
+			break;
+		case "game loss":
+			if(inspectButton) {
+				var menuHeight = vHeight - vHeight*0.2;
+				var buttonWidth = 128;
+				var buttonHeight = 64;
+				startx = (vWidth - buttonWidth)/2;
+				starty = (vHeight - menuHeight)/2 + menuHeight - (10 + buttonHeight);
+		
+				if(point_in_rectangle(mouse_x, mouse_y, uiX(startx), uiY(starty), uiX(startx+buttonWidth), uiY(starty+buttonHeight))) { 
+					oUI.pauseSurface = -1;
+					oUI.pause = false;
+					oUI.state = "default";
+					oUI.player = -1;
+		
+					instance_activate_all();
+					
+					var currentBills = oGame.bills;
+					var newBills = totalValue;
+					if(!is_undefined(currentBills)) {
+						newBills += currentBills;
+					}
+					ds_map_replace(oGame.saveData, "bills", newBills);
+					ds_map_secure_save(oGame.saveData, oGame.fileName);
+					oGame.bills = newBills;
+					room_goto(rMenu); 
 				}
 			}
 			break;

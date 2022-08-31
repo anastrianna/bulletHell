@@ -1,7 +1,7 @@
 /// @desc
 event_inherited();
 
-maxHP = 1000;
+maxHP = 50;
 currentHP = maxHP;
 value = 10;
 

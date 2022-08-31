@@ -2,41 +2,27 @@
 
 randomize();
 
+saveData = ds_map_create();
+fileName = "SaveData.key";
+
+if(file_exists(fileName)) {
+	saveData = ds_map_secure_load(fileName);
+}
+
 //Initialize sound group volume values
 global.mainVol = 1;
 global.musicVol = 1;
 global.effectsVol = 1;
 
-global.maxChoices = 4;
-
-enum upgradesColumns {
-	name,
-	description,
-	maxTier,
-	currentTier,
-	count
-}
-
-//Initialize upgrades
-global.upgrades = createGrid(
-	["Strength", "Increase base damage of attack", 5, 0],
-	["Attack Speed", "Increase speed of attack", 3, 0],
-	["Projectile Speed", "Increase speed of projectiles", 2, 0],
-	["Health", "Increase maximum health", 2, 0],
-	["Health Regen", "Gain health regeneration", 1, 0],
-	["Infection", "Apply infection with attacks", 1, 0],
-	["Infestation", "Enemies explode into spores", 1, 0],
-	["Crit", "Crit chance", 1, 0],
-	["Projectile Count", "Increase number of projectiles produced from", 3, 0],
-	["Weaken", "Chance to debuff enemies to recieve more damage", 1, 0],
-	["Movement Speed", "Increase player movement speed", 3, 0],
-	["Effect Power", "Increase effect power", 2, 0]
-);
-
-global.availableUpgrades = ds_list_create();
-
-for(var i = 0; i < ds_grid_height(global.upgrades); i++) {
-	ds_list_add(global.availableUpgrades, global.upgrades[# upgradesColumns.name, i]);
-}
-
 playerUnit = oPlayer;
+
+global.enemyValues = ds_map_create();
+ds_map_add(global.enemyValues, "enemy", 1);
+ds_map_add(global.enemyValues, "boss", 100);
+
+bills = 0;
+
+var temp = ds_map_find_value(saveData, "bills");
+if(!is_undefined(temp)) {
+	bills = temp;
+}

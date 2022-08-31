@@ -7,7 +7,7 @@ function startGame() {
 ///@func toggleUpgradeMenu()
 ///@desc Open/Close the upgrade menu
 function toggleUpgradeMenu() {
-	
+	oMainMenu.upgradesMenuBool = true;
 }
 
 ///@func exitGame()
@@ -46,5 +46,6 @@ function changePlayerUnit(value) {
 	switch(value) {
 		case 0: oGame.playerUnit = oInfluenza; break;
 		case 1: oGame.playerUnit = oHIV; break;
+		case 2: oGame.playerUnit = oCancer; break;
 	}
 }

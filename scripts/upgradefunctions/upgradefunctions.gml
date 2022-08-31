@@ -38,6 +38,19 @@ function applyUpgrade(name) {
 	}
 }
 
+///@func applyMutation(name)
+///@desc Apply player mutation
+///@arg name Name of mutation
+function applyMutation(name) {
+	switch(name) {
+		case "Immuno Compromise":
+			oHIV.slowPower = 50;
+			break;
+	}
+	
+	ds_list_add(oPlayer.activeMutations, name);
+}
+
 ///@func fixUpgradeName()
 ///@desc Add tier to upgrade name
 ///@arg txt Text to add

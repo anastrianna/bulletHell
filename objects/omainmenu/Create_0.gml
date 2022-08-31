@@ -1,3 +1,4 @@
+#region Menu setup
 lastButton = 0;
 
 enum menuPage {
@@ -25,7 +26,7 @@ dsSettings = createGrid(
 );
 
 dsGameStart = createGrid(
-	["INFECTION", menuElementType.shift, changePlayerUnit, 0, ["INFLUENZA", "HIV"]],
+	["INFECTION", menuElementType.shift, changePlayerUnit, 0, ["INFLUENZA", "HIV", "CANCER"]],
 	["CONFIRM", menuElementType.scriptRunner, startGame, false], 
 );
 
@@ -57,7 +58,22 @@ repeat (arrayLen) {
 	menuOption[i] = 0;
 	i++;
 }
+#endregion Menu setup
 
 helpfulString = "";
 
 inputting = false;
+
+upgradesMenuBool = false;
+
+enum permUpgradeCols {
+	name,
+	active,
+	count
+}
+
+permanentUpgrades = createGrid(
+	["TAINTED WATER", 0],
+	["BUSTED PLUMBING", 0],
+	["TRASH BUILDUP", 0]
+);

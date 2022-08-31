@@ -79,6 +79,63 @@ switch(state) {
 			draw_text(startx+(confirmBoxWidth/2), starty+(confirmBoxHeight/2), "Confirm");
 		}
 		break;
+	case "game loss":
+		c = c_white;
+		startx = vWidth * 0.1;
+		starty = vHeight * 0.1;
+		var menuWidth = vWidth - startx*2;
+		var menuHeight = vHeight - starty*2;
+		
+		draw_rectangle_color(startx, starty, startx + menuWidth, starty + menuHeight, c, c, c, c, true);
+		draw_set_alpha(0.5);
+		draw_rectangle_color(startx, starty, startx + menuWidth, starty + menuHeight, c, c, c, c, false);
+		draw_set_alpha(1);
+		
+		draw_set_font(fLoss);
+		var failureText = "Loss";
+		startx = vWidth/2;
+		starty += 10 + string_height(failureText);
+		
+		draw_text(startx, starty, failureText);
+		
+		draw_set_font(fMenus);
+		var total = 0;
+		var value;
+		starty += 10 + string_height(failureText);
+		value = kills * global.enemyValues[? "enemy"];
+		total += value;
+		
+		var killString = "Enemies killed: " + string(kills) + " x " + string(global.enemyValues[? "enemy"]) + " = " + string(value);
+		draw_text(startx, starty, killString);
+		
+		starty += 10 + string_height(killString);
+		value = bossKills * global.enemyValues[? "boss"];
+		total += value;
+		
+		killString = "Bosses killed: " + string(bossKills) + " x " + string(global.enemyValues[? "boss"]) + " = " + string(value);
+		draw_text(startx, starty, killString);
+		
+		starty += 10 + string_height(killString);
+		
+		draw_text(startx, starty, "Total: " + string(value));
+		
+		totalValue = total;
+		
+		//Button to go back to main menu
+		var buttonWidth = 128;
+		var buttonHeight = 64;
+		startx = (vWidth - buttonWidth)/2;
+		starty = (vHeight - menuHeight)/2 + menuHeight - (10 + buttonHeight);
+		c = c_white;
+		var cc = c_grey;
+		draw_set_font(fMenus);
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_middle);
+		
+		if(point_in_rectangle(mouse_x, mouse_y, uiX(startx), uiY(starty), uiX(startx+buttonWidth), uiY(starty+buttonHeight))) { cc = c_red; }
+		rectangleWithOutline(startx, starty, startx+buttonWidth, starty+buttonHeight, c, cc);
+		draw_text(startx+(buttonWidth/2), starty+(buttonHeight/2), "BACK");
+		break;
 	case "default":
 		//Draw timer
 		if(instance_exists(oEnemySpawner)) {

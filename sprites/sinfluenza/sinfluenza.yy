@@ -73,8 +73,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Sprites",
-    "path": "folders/Sprites.yy",
+    "name": "Units",
+    "path": "folders/Sprites/Units.yy",
   },
   "resourceVersion": "1.0",
   "name": "sInfluenza",
