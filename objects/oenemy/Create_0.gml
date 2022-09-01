@@ -1,9 +1,15 @@
 /// @desc
 event_inherited();
 
-maxHP = 20;
+maxHP = 10;
 currentHP = maxHP;
-value = 1;
-infected = -1;
-infested = false;
+value = 2;
+
+tickRate = 0.5;
+
+//Player upgrade trackers
+infectedTime = 0;
 weakened = false;
+
+//Influenza mutation
+infested = false;

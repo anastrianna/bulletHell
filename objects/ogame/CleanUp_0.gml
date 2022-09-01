@@ -1,4 +1,4 @@
 /// @desc
 
-ds_grid_destroy(global.upgrades);
-ds_list_destroy(global.availableUpgrades);
+ds_grid_destroy(houseUpgrades);
+ds_map_destroy(saveData);

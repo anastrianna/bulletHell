@@ -3,7 +3,7 @@
 event_inherited();
 
 if(experience >= levelCost && ds_list_size(global.availableUpgrades)) { 
-	experience = 0;
-	levelCost *= 2;
+	experience -= levelCost;
+	levelCost = floor(levelCost * 1.5);
 	playerUpgrade("upgrade");
 }

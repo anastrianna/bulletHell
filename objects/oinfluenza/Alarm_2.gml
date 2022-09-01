@@ -12,7 +12,7 @@ for(var i = 0; i <= oPlayer.bonusProjectiles; i++) {
 	proj.movSpeed = projectileSpeed;
 	proj.direction = point_direction(x, y, mouse_x, mouse_y) + spread;
 	proj.lifeSpan = projectileLifeSpan;
-	if(ds_list_find_index(oPlayer.activeMutations, "Reverse Shot") != -1) {
+	if(ds_list_find_index(oPlayer.activeMutations, "Reverse Shot")+1) {
 		var proj = instance_create_layer(x, y, "Instances", oSpore);
 		proj.damage = atkDamage;
 		proj.movSpeed = projectileSpeed;

@@ -7,7 +7,7 @@ function startGame() {
 ///@func toggleUpgradeMenu()
 ///@desc Open/Close the upgrade menu
 function toggleUpgradeMenu() {
-	
+	oMainMenu.houseUpgradesMenuBool = true;
 }
 
 ///@func exitGame()
@@ -39,12 +39,36 @@ function changeWindowMode(value) {
 	}
 }
 
-///@func changePlayerUnit(value)
+///@func changePlayerUnit(name)
 ///@desc Change player unit
-///@arg value Boolean
-function changePlayerUnit(value) {
-	switch(value) {
-		case 0: oGame.playerUnit = oInfluenza; break;
-		case 1: oGame.playerUnit = oHIV; break;
+///@arg name Disease name
+function changePlayerUnit(name) {
+	switch(name) {
+		case "INFLUENZA": oGame.playerUnit = oInfluenza; break;
+		case "HIV": oGame.playerUnit = oHIV; break;
+		case "CANCER": oGame.playerUnit = oCancer; break;
 	}
+}
+
+///@func determinePlayableDiseases()
+///@desc Populate playable disease
+function determinePlayableDiseases() {
+	oMainMenu.page = menuPage.start;
+	
+	var availableDiseases = ds_list_create();
+	ds_list_add(availableDiseases, "INFLUENZA");
+	
+	var temp = ds_map_find_value(oGame.saveData, "BLOOD IN THE WATER");
+	if(!is_undefined(temp) && temp) { ds_list_add(availableDiseases, "HIV"); }
+	
+	var temp = ds_map_find_value(oGame.saveData, "CHEMICAL WASTE");
+	if(!is_undefined(temp) && temp) { ds_list_add(availableDiseases, "CANCER"); }
+	
+	var array = array_create(ds_list_size(availableDiseases));
+	for(var i = 0; i < ds_list_size(availableDiseases); i++) {
+		array[i] = availableDiseases[| i];
+	}
+	ds_list_destroy(availableDiseases);
+	
+	oMainMenu.dsGameStart[# 4, 0] = array;
 }

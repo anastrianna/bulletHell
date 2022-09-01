@@ -1,3 +1,4 @@
+#region Menu setup
 lastButton = 0;
 
 enum menuPage {
@@ -11,7 +12,7 @@ enum menuPage {
 }
 
 dsMenuMain = createGrid(
-	["PLAY", menuElementType.pageTransfer, menuPage.start, false], 
+	["PLAY", menuElementType.scriptRunner, determinePlayableDiseases, false], 
 	["UPGRADES", menuElementType.scriptRunner, toggleUpgradeMenu, false],
 	["SETTINGS", menuElementType.pageTransfer, menuPage.settings],
 	["EXIT", menuElementType.scriptRunner, exitGame, false]
@@ -25,8 +26,9 @@ dsSettings = createGrid(
 );
 
 dsGameStart = createGrid(
-	["INFECTION", menuElementType.shift, changePlayerUnit, 0, ["INFLUENZA", "HIV"]],
+	["INFECTION", menuElementType.shift, changePlayerUnit, 0, []],
 	["CONFIRM", menuElementType.scriptRunner, startGame, false], 
+	["BACK", menuElementType.pageTransfer, menuPage.main]
 );
 
 dsMenuAudio = createGrid(
@@ -57,7 +59,13 @@ repeat (arrayLen) {
 	menuOption[i] = 0;
 	i++;
 }
+#endregion Menu setup
 
 helpfulString = "";
 
 inputting = false;
+
+houseUpgradesMenuBool = false;
+//Tracks if there are current changes to house upgrades
+houseUpgradePendingBool = false;
+houseUpgradeCosts = 0;

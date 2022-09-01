@@ -1,41 +1,31 @@
 /// @desc Spawn enemies
 
-#region Enemy spawn point
-//Calculate enemy spawn position
-var vWidth = camera_get_view_width(view_camera[0]);
-var vHeight = camera_get_view_height(view_camera[0]);
-var camx = camera_get_view_x(view_camera[0]);
-var camy = camera_get_view_y(view_camera[0]);
-var offset = 10;
+//0 - top, 1 - right, 2 - down, 3 - left 
+var quadrant = 0;
 
-var xx, yy;
+var difficulty = max(floor((maxTime - minutes)/2), 1);
 
-switch(quadrant) {
-	case 0:
-		xx = random(vWidth) + camx;
-		yy = camy - offset;
-		break;
-	case 1:
-		xx = camx + vWidth + offset;
-		yy = random(vHeight) + camy;
-		break;
-	case 2:
-		xx = random(vWidth) + camx;
-		yy = camy + vHeight + offset;
-		break;
-	case 3:
-		xx = camx - offset;
-		yy = random(vHeight) + camy;
-		break;
+var enemyCount = 4;
+if(instance_exists(oBoss)) { enemyCount = 2; }
+
+repeat(enemyCount) {
+	var enemyCoordinates = generateEnemySpawn(quadrant);
+
+	if(quadrant == 3) {
+		quadrant = 0;	
+	} else { quadrant++; }
+
+	var enemy = instance_create_layer(enemyCoordinates[0], enemyCoordinates[1], "Instances", oNeutrophil);
+	enemy.maxHP = enemy.maxHP * difficulty;
+	enemy.currentHP = enemy.maxHP;
+	enemy.value = enemy.value * ceil((maxTime - minutes)/2);
 }
 
-if(quadrant == 3) {
-	quadrant = 0;	
-} else { quadrant++; }
-#endregion Enemy spawn point
-
-var difficulty = maxTime - minutes;
-
-var enemy = instance_create_layer(xx, yy, "Instances", oNeutrophil);
-enemy.maxHP = enemy.maxHP * difficulty;
-enemy.currentHP = enemy.maxHP;
+if(minutes < 19 && instance_number(oLymphocyte) < 10) {
+	var enemyCoordinates = generateEnemySpawn(irandom(3));
+	
+	var enemy = instance_create_layer(enemyCoordinates[0], enemyCoordinates[1], "Instances", oLymphocyte);
+	enemy.maxHP = enemy.maxHP * difficulty;
+	enemy.currentHP = enemy.maxHP;
+	enemy.value = enemy.value * ceil((maxTime - minutes)/2);
+}
