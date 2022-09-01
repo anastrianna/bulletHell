@@ -1,9 +1,95 @@
 //script_execute(dsGrid[# 2, menuOption[page]], dsGrid[# 3, menuOption[page]]);
+var vWidth = camera_get_view_width(view_camera[0]);
+var vHeight = camera_get_view_height(view_camera[0]);
+var centerx = vWidth/2;
+var centery = vHeight/2;
 
 getInput();
 
-if(upgradesMenuBool) {
-	if(cancel) { upgradesMenuBool = false; }
+if(houseUpgradesMenuBool) {
+	if(inspectButton) {
+		if(houseUpgradePendingBool) {
+			var startx = vWidth * 0.1;
+			var starty = vHeight * 0.1;
+			var menuWidth = vWidth - 2*startx;
+			var menuHeight = vHeight - 2*starty;
+			var buttonWidth = 64;
+			var buttonHeight = 32;
+			xx = startx + menuWidth - buttonWidth;
+			yy = starty + menuHeight - buttonHeight;
+		
+			if(point_in_rectangle(mouse_x, mouse_y, uiX(xx), uiY(yy), uiX(xx+buttonWidth), uiY(yy+buttonHeight))) {
+				oGame.bills -= houseUpgradeCosts;
+				ds_map_replace(oGame.saveData, "bills", oGame.bills);
+				
+				for(var i = 0; i < ds_grid_height(oGame.houseUpgrades); i++) {
+					var name = oGame.houseUpgrades[# houseUpgradeCols.name, i];
+					var active = oGame.houseUpgrades[# houseUpgradeCols.active, i];
+					
+					ds_map_replace(oGame.saveData, name, active);	
+				}
+				ds_map_secure_save(oGame.saveData, oGame.fileName);
+				
+				houseUpgradePendingBool = false;
+				houseUpgradeCosts = 0;
+				houseUpgradesMenuBool = false;
+			}
+		}
+		for(var i = 0; i < ds_grid_height(oGame.houseUpgrades); i++) {
+			var name = oGame.houseUpgrades[# houseUpgradeCols.name, i];
+			var temp = ds_map_find_value(oGame.saveData, name);
+			if(!is_undefined(temp)) { 
+				if(temp) { continue; }	
+			}
+			
+			var xx = oGame.houseUpgrades[# houseUpgradeCols.coordinates, i][0];
+			var yy = oGame.houseUpgrades[# houseUpgradeCols.coordinates, i][1];
+			var sDimensions = sprite_get_width(sHouseUpgrade);
+			var cost = oGame.houseUpgrades[# houseUpgradeCols.cost, i];
+			var balance = oGame.bills - houseUpgradeCosts;
+			
+			if(balance >= cost && point_in_rectangle(mouse_x, mouse_y, uiX(centerx + xx - sDimensions/2), uiY(centery + yy - sDimensions/2), uiX(centerx + xx + sDimensions/2), uiY(centery + yy + sDimensions/2))) {
+				var requirements = oGame.houseUpgrades[# houseUpgradeCols.requirements, i];
+				
+				var temp = true;
+				if(array_length_1d(requirements)) {
+					for(var j = 0; j < array_length_1d(requirements); j++) {
+						var reqRow = ds_grid_value_y(oGame.houseUpgrades, houseUpgradeCols.name, 0, houseUpgradeCols.name, ds_grid_height(oGame.houseUpgrades), requirements[j]);
+				
+						if(!oGame.houseUpgrades[# houseUpgradeCols.active, reqRow]) { temp = false; }
+					}
+				}
+				
+				if(temp) {
+					var active = oGame.houseUpgrades[# houseUpgradeCols.active, i];
+					
+					if(active) {
+						oGame.houseUpgrades[# houseUpgradeCols.active, i] = 0;
+						houseUpgradeCosts -= cost;
+						if(!houseUpgradeCosts) { houseUpgradePendingBool = false; }
+					} else {
+						oGame.houseUpgrades[# houseUpgradeCols.active, i] = 1;
+						houseUpgradeCosts += cost;
+						houseUpgradePendingBool = true;
+					}					
+				}
+			}
+		}
+	}
+	if(cancel) {
+		for(var i = 0; i < ds_grid_height(oGame.houseUpgrades); i++) {
+			var name = oGame.houseUpgrades[# houseUpgradeCols.name, i];
+			var active = ds_map_find_value(oGame.saveData, name);
+			
+			if(!is_undefined(active)) {
+				oGame.houseUpgrades[# houseUpgradeCols.active, i] = active;		
+			} else { oGame.houseUpgrades[# houseUpgradeCols.active, i] = 0; }
+		}
+				
+		houseUpgradePendingBool = false;
+		houseUpgradeCosts = 0;
+		houseUpgradesMenuBool = false;		
+	}
 } else {
 	var dsGrid = menuPages[page], dsHeight = ds_grid_height(dsGrid);
 
@@ -12,7 +98,7 @@ if(upgradesMenuBool) {
 			var hInput = menuHMov;
 			dsGrid[# 3, menuOption[page]] += hInput;
 			dsGrid[# 3, menuOption[page]] = clamp(dsGrid[# 3, menuOption[page]], 0, array_length_1d(dsGrid[# 4, menuOption[page]]) - 1);
-			script_execute(dsGrid[# 2, menuOption[page]], dsGrid[# 3, menuOption[page]]);
+			script_execute(dsGrid[# 2, menuOption[page]], dsGrid[# 4, menuOption[page]][dsGrid[# 3, menuOption[page]]]);
 			break;
 		case menuElementType.slider:
 			var hInput = menuHMov;
