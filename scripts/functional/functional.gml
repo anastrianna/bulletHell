@@ -189,6 +189,62 @@ function rollChance(p) {
 	} else { return false; }
 }
 
+///@func createTipTextbox(startx, starty, text)
+///@desc Create a textbox from the given coordinates
+///@arg startx x coordinate to draw from
+///@arg starty y coordinate to draw from
+///@arg text Text to display in box
+function createTipTextbox(startx, starty, text) {
+	var vWidth = camera_get_view_width(view_camera[0]);
+	var vHeight = camera_get_view_height(view_camera[0]);
+	var padding = 5;
+	var triangleHeight = 20;
+	var textWidth = 200;
+	var down = true;
+	var maxHeight = vHeight - starty;
+	var maxTextWidth = vWidth-3-padding*2;
+	
+	if(vHeight/2 < starty) { 
+		down = false; 
+		maxHeight = starty;	
+		triangleHeight = -triangleHeight;
+	}
+	
+	draw_set_font(fDescriptions);
+	while(string_height_ext(text, -1, textWidth) + abs(triangleHeight) + 2*padding > maxHeight) {
+		textWidth = min(textWidth+50, maxTextWidth);
+		if(textWidth == maxTextWidth) {
+			break;	
+		}
+	}
+	var boxHeight = string_height_ext(text, -1, textWidth) + 2*padding;
+	if(!down) { boxHeight = -boxHeight; }
+	
+	var xx;
+	if(vWidth/2 > startx) {
+		if(textWidth/2 + padding + 1 > startx) {
+			xx = 1;
+		} else { xx = startx - (textWidth/2 + padding); }
+	} else {
+		if(textWidth/2 + padding + 1 > vWidth - startx) {
+			xx = vWidth - (textWidth + padding*2 + 2);
+		} else { xx = startx - (textWidth/2 + padding); }
+	}
+	
+	var c = c_white;
+	var cc = c_grey;
+	var boxWidth = textWidth + 2*padding;
+	
+	draw_triangle_color(startx, starty, startx-triangleHeight, starty+triangleHeight, startx+triangleHeight, starty+triangleHeight, cc, cc, cc, false);
+	draw_triangle_color(startx, starty, startx-triangleHeight, starty+triangleHeight, startx+triangleHeight, starty+triangleHeight, c, c, c, true);
+
+	rectangleWithOutline(xx, starty+triangleHeight, xx+boxWidth, starty+triangleHeight+boxHeight, c, cc);
+	
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_text_ext(xx + (boxWidth/2), starty + triangleHeight + (boxHeight/2), text, -1, textWidth);
+}
+
 ///func doNothing()
 ///desc Do nothing
 function doNothing() {

@@ -3,7 +3,7 @@ var vWidth = camera_get_view_width(view_camera[0]);
 var vHeight = camera_get_view_height(view_camera[0]);
 var centerx = vWidth/2;
 var centery = vHeight/2;
-
+	
 if(houseUpgradesMenuBool) {
 	var c = c_white;
 	var cc = c_grey;
@@ -11,13 +11,15 @@ if(houseUpgradesMenuBool) {
 	var starty = vHeight * 0.1;
 	var menuWidth = vWidth - 2*startx;
 	var menuHeight = vHeight - 2*starty;
+	var text = "Bills: ";
+	if(oGame.bills != 0) { text += "-"; }
 	
 	rectangleWithOutline(startx, starty, startx + menuWidth, starty + menuHeight, c, cc);
 	
 	var xx = vWidth/2;
 	var yy = starty + 20;
-	
-	draw_text_color(xx, yy, "Bills: -" + string(oGame.bills), c, c, c, c, 1);
+	draw_set_font(fMenus);
+	draw_text_color(xx, yy, text + string(oGame.bills), c, c, c, c, 1);
 	
 	if(houseUpgradePendingBool) {
 		yy += 20;
@@ -35,6 +37,7 @@ if(houseUpgradesMenuBool) {
 		
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_middle);
+		draw_set_font(fMenus);
 		draw_text(xx+(buttonWidth/2), yy+(buttonHeight/2), "CONFIRM");
 	}
 
@@ -87,6 +90,22 @@ if(houseUpgradesMenuBool) {
 		draw_set_valign(fa_middle);
 		draw_set_font(fHouseUpgrade);
 		draw_text(centerx + xx, centery + yy, name);
+	}
+	
+	//Draw descriptions on hover-over
+	for(var i = 0; i < ds_grid_height(oGame.houseUpgrades); i++) {
+		xx = oGame.houseUpgrades[# houseUpgradeCols.coordinates, i][0];
+		yy = oGame.houseUpgrades[# houseUpgradeCols.coordinates, i][1];	
+		var desc = oGame.houseUpgrades[# houseUpgradeCols.description, i];
+		var sDimensions = sprite_get_width(oGame.houseUpgrades[# houseUpgradeCols.sprite, i]);
+		
+		if(point_in_rectangle(mouse_x, mouse_y, uiX(xx - sDimensions/2), uiY(yy - sDimensions/2), uiX(xx + sDimensions/2), uiY(yy + sDimensions/2))) {
+			var cost = oGame.houseUpgrades[# houseUpgradeCols.cost, i];
+			desc += "\nCost: " + string(cost);
+			var startx = mouse_x  - camera_get_view_x(view_camera[0]);
+			var starty = mouse_y  - camera_get_view_y(view_camera[0]);
+			createTipTextbox(startx, starty, desc);	
+		}
 	}
 } else {
 	var c = c_black;
@@ -194,6 +213,7 @@ if(houseUpgradesMenuBool) {
 			
 				c = c_white;
 				if (inputting && yy = menuOption[page]) { c = c_yellow; }
+
 				draw_text_color(rtx, rty, stringVal, c, c, c, c, 1);
 				break;
 			case menuElementType.textInput:

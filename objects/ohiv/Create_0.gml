@@ -3,8 +3,7 @@
 event_inherited();
 
 baseAtkSpeed = 1.5;
-baseRange = 100;
-range = baseRange;
+aoeRangeFactor = 0.5;
 
 targetsInRange = ds_list_create();
 

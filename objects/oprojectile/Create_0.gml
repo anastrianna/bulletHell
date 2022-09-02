@@ -2,4 +2,6 @@
 
 damage = 0;
 movSpeed = 0;
-lifeSpan = 1;
+range = 100;
+startx = undefined;
+starty = undefined;

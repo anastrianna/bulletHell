@@ -1,3 +1,4 @@
+
 /// @desc
 event_inherited();
 

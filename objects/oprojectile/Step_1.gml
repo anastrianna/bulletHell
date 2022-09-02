@@ -1,6 +1,8 @@
-///@desc Set lifespan and speed
-if(alarm[0] < 0) {
-	alarm[0] = room_speed * lifeSpan;	
+///@desc
+if(is_undefined(startx) || is_undefined(starty)) { exit; }
+
+if(point_distance(x, y, startx, starty) > range) {
+	show_debug_message("suicide");
 }
 
 speed = movSpeed;

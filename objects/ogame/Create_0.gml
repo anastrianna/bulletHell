@@ -29,6 +29,7 @@ if(!is_undefined(temp)) {
 
 enum houseUpgradeCols {
 	name,
+	description,
 	sprite,
 	requirements,
 	cost,
@@ -39,12 +40,12 @@ enum houseUpgradeCols {
 
 //Skill coordinates from center
 houseUpgrades = createGrid(
-	["HEATING", sHouseUpgrade, [], 10, [0, 0], 0],
-	["TAINTED WATER", sHouseUpgrade, ["HEATING"], 100, [-100, 0], 0],
-	["BLOOD IN THE WATER", sHouseUpgrade, ["TAINTED WATER"], 500, [-200, 0], 0],
-	["BUSTED PLUMBING", sHouseUpgrade, ["HEATING"], 100, [0, -100], 0],
-	["TRASH BUILDUP", sHouseUpgrade, ["HEATING"], 100, [100, 0], 0],
-	["CHEMICAL WASTE", sHouseUpgrade, ["TRASH BUILDUP"], 500, [200, 0], 0]
+	["HEATING", "AS THEY CUT COSTS ON HEATING, THE TEMPERATURE GOES DOWN.  A PERFECT ENVIRONMENT, DON'T YOU THINK?\n\n+2 to max health", sHouseUpgrade, [], 10, [0, 0], 0],
+	["TAINTED WATER", "WHEN TIMES ARE HARD, THE SINK WILL HAVE TO DO.  BUT WHO KNOWS WHAT'S IN THOSE PIPES..\n\n+50 to range", sHouseUpgrade, ["HEATING"], 100, [-100, 0], 0],
+	["BLOOD IN THE WATER", "I LOVE THE NEW PENNY FLAVOR FROM THE TAP.\n\nUnlock HIV", sHouseUpgrade, ["TAINTED WATER"], 500, [-200, 0], 0],
+	["BUSTED PLUMBING", "NO TOILET.  GUESS THEY'LL HAVE TO IMPROVISE.\n\n1.5 x base damage", sHouseUpgrade, ["HEATING"], 100, [0, -100], 0],
+	["TRASH BUILDUP", "THERE USED TO BE A GUY THAT TOOK CARE OF THIS.  I'M SURE THEY'LL GET TO IT SOON\n\n+1 bonus projectiles", sHouseUpgrade, ["HEATING"], 100, [100, 0], 0],
+	["CHEMICAL WASTE", "HOW DID THIS EVEN GET HERE?  MUST BE THAT NEW ROOMMATE.\n\nUnlock Cancer", sHouseUpgrade, ["TRASH BUILDUP"], 500, [200, 0], 0]
 );
 
 //Initialize house upgrades from save
