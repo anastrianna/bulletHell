@@ -33,9 +33,9 @@ if(pause) {
 					if(point_in_rectangle(mouse_x, mouse_y, startx, starty, startx+confirmBoxWidth, starty+confirmBoxHeight)) {
 						pauseToggle();
 						
-						var row = ds_grid_value_y(global.upgrades, 0, 0, 0, ds_grid_height(global.upgrades), upgradeList[| upgradeChoice]);
+						var row = ds_grid_value_y(global.playerUpgrades, 0, 0, 0, ds_grid_height(global.playerUpgrades), upgradeList[| upgradeChoice]);
 						
-						applyUpgrade(global.upgrades[# 0, row]);
+						applyUpgrade(global.playerUpgrades[# 0, row]);
 					}
 				}
 			}

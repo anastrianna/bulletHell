@@ -10,8 +10,39 @@ if(room == rInit) {
 	}
 } else if(room == rGame) {
 	if(!instance_exists(oPlayer)) { 
-		instance_create_layer(0, 0, "Instances", playerUnit);
-	} else if(!instance_exists(oUI)) { 
+		var player = instance_create_layer(0, 0, "Instances", playerUnit);
+		
+		#region House Upgrades
+		var temp = ds_map_find_value(saveData, "HEATING");
+		if(!is_undefined(temp)) { 
+			if(temp) {
+				player.maxHP += 2;
+				player.currentHP = player.maxHP;
+			}
+		}
+		
+		temp = ds_map_find_value(saveData, "TAINTED WATER");
+		if(!is_undefined(temp)) { 
+			if(temp) {
+				player.range += 50;
+			}
+		}
+		
+		temp = ds_map_find_value(saveData, "BUSTED PLUMBING");
+		if(!is_undefined(temp)) { 
+			if(temp) {
+				player.baseAtkDamage = floor(player.baseAtkDamage * 1.5);
+			}
+		}
+		
+		temp = ds_map_find_value(saveData, "TRASH BUILDUP");
+		if(!is_undefined(temp)) { 
+			if(temp) {
+				player.bonusProjectiles += 1;
+			}
+		}
+		#endregion House Upgrades
+	} else if(!instance_exists(oUI)) {
 		instance_create_layer(0, 0, "Processes", oUI);
 	} else if(!instance_exists(oEnemySpawner)) { 
 		instance_create_layer(0, 0, "Processes", oEnemySpawner);

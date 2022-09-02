@@ -101,13 +101,13 @@ function playerFaceDirection(xx, yy) {
 ///@arg damage Magnitude of damage
 function dealDamage(target, damage) {
 	if(object_is_ancestor(target.object_index, oEnemy)) {
-		var row = ds_grid_value_y(global.upgrades, 0, 0, 0, ds_grid_height(global.upgrades), "Crit");
-		if(global.upgrades[# upgradesColumns.currentTier, row]) {
+		var row = ds_grid_value_y(global.playerUpgrades, 0, 0, 0, ds_grid_height(global.playerUpgrades), "Crit");
+		if(global.playerUpgrades[# upgradesColumns.currentTier, row]) {
 			if(rollChance(oPlayer.critChance)) { damage *= 2; }
 		}
 		
-		var row = ds_grid_value_y(global.upgrades, 0, 0, 0, ds_grid_height(global.upgrades), "Weaken");
-		if(global.upgrades[# upgradesColumns.currentTier, row]) {
+		var row = ds_grid_value_y(global.playerUpgrades, 0, 0, 0, ds_grid_height(global.playerUpgrades), "Weaken");
+		if(global.playerUpgrades[# upgradesColumns.currentTier, row]) {
 			if(target.weakened) { damage *= 1.2; }
 		}
 	}

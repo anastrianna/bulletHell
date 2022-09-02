@@ -1,19 +1,18 @@
 /// @desc
 event_inherited();
 
-maxHP = 10;
+maxHP = 5;
 currentHP = maxHP;
 movSpeed = 2;
 baseAtkDamage = 5;
 atkDamage = baseAtkDamage;
 baseAtkSpeed = 1;
 atkSpeedBuff = 0;
-baseRange = 100;
+baseRange = 200;
 range = baseRange;
 critChance = 0;
 baseProjectileSpeed = 5;
 projectileSpeed = baseProjectileSpeed;
-projectileLifeSpan = 1;
 baseProjectiles = 1;
 bonusProjectiles = 0;
 effectPower = 100;
@@ -37,7 +36,7 @@ infectionDamage = 3;
 infectionDuration = 3;
 
 //Initialize upgrades
-global.upgrades = createGrid(
+global.playerUpgrades = createGrid(
 	["Strength", "Increase base damage of attack", 5, 0],
 	["Attack Speed", "Increase speed of attack", 3, 0],
 	["Projectile Speed", "Increase speed of projectiles", 2, 0],
@@ -48,7 +47,8 @@ global.upgrades = createGrid(
 	["Projectile Count", "Increase number of projectiles produced from", 3, 0],
 	["Weaken", "Chance to debuff enemies to recieve more damage", 1, 0],
 	["Movement Speed", "Increase player movement speed", 3, 0],
-	["Effect Power", "Increase effect power", 2, 0]
+	["Effect Power", "Increase effect power", 2, 0],
+	["Range", "Increase range of attacks and projectiles", 2, 0]
 );
 
 enum upgradesColumns {
@@ -61,8 +61,8 @@ enum upgradesColumns {
 
 global.availableUpgrades = ds_list_create();
 
-for(var i = 0; i < ds_grid_height(global.upgrades); i++) {
-	ds_list_add(global.availableUpgrades, global.upgrades[# upgradesColumns.name, i]);
+for(var i = 0; i < ds_grid_height(global.playerUpgrades); i++) {
+	ds_list_add(global.availableUpgrades, global.playerUpgrades[# upgradesColumns.name, i]);
 }
 
 global.maxChoices = 4;

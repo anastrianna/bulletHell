@@ -2,8 +2,8 @@
 
 getInput();
 
-var row = ds_grid_value_y(global.upgrades, 0, 0, 0, ds_grid_height(global.upgrades), "Health Regen");
-if(global.upgrades[# upgradesColumns.currentTier, row]) {
+var row = ds_grid_value_y(global.playerUpgrades, 0, 0, 0, ds_grid_height(global.playerUpgrades), "Health Regen");
+if(global.playerUpgrades[# upgradesColumns.currentTier, row]) {
 	if(alarm[3] < 0) { alarm[3] = room_speed * 30; }
 }
 

@@ -28,12 +28,15 @@ function applyUpgrade(name) {
 		case "Effect Power":
 			oPlayer.effectPower += 25;
 			break;
+		case "Range":
+			oPlayer.range += oPlayer.baseRange/2;
+			break;
 	}
 	
-	var row = ds_grid_value_y(global.upgrades, 0, 0, 0, ds_grid_height(global.upgrades), name);
-	global.upgrades[# upgradesColumns.currentTier, row] += 1;
+	var row = ds_grid_value_y(global.playerUpgrades, 0, 0, 0, ds_grid_height(global.playerUpgrades), name);
+	global.playerUpgrades[# upgradesColumns.currentTier, row] += 1;
 	
-	if(global.upgrades[# upgradesColumns.currentTier, row] == global.upgrades[# upgradesColumns.maxTier, row]) {
+	if(global.playerUpgrades[# upgradesColumns.currentTier, row] == global.playerUpgrades[# upgradesColumns.maxTier, row]) {
 		ds_list_delete(global.availableUpgrades, ds_list_find_index(global.availableUpgrades, name));
 	}
 }

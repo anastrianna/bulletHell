@@ -16,7 +16,7 @@ switch(state) {
 		var starty = (vHeight - upgradeBoxHeight)/2;
 
 		for(var i = 0; i < choiceCount; i++) {
-			var row = ds_grid_value_y(global.upgrades, 0, 0, 0, ds_grid_height(global.upgrades), upgradeList[| i]);
+			var row = ds_grid_value_y(global.playerUpgrades, 0, 0, 0, ds_grid_height(global.playerUpgrades), upgradeList[| i]);
 			
 			var c = c_red;
 			//If choice is selected, highlight
@@ -24,8 +24,8 @@ switch(state) {
 			
 			rectangleWithOutline(startx, starty, startx+upgradeBoxWidth, starty+upgradeBoxHeight, c, c_grey);
 			
-			var upgradeText = global.upgrades[# upgradesColumns.name, row];
-			if(global.upgrades[# upgradesColumns.maxTier, row] > 1) { upgradeText = fixUpgradeName(upgradeText, global.upgrades[# upgradesColumns.currentTier, row]); }
+			var upgradeText = global.playerUpgrades[# upgradesColumns.name, row];
+			if(global.playerUpgrades[# upgradesColumns.maxTier, row] > 1) { upgradeText = fixUpgradeName(upgradeText, global.playerUpgrades[# upgradesColumns.currentTier, row]); }
 			draw_text(startx+(upgradeBoxWidth/2), starty+(upgradeBoxHeight/2), upgradeText);
 			
 			startx += xBuffer;
@@ -53,7 +53,7 @@ switch(state) {
 		var starty = (vHeight - upgradeBoxHeight)/2;
 
 		for(var i = 0; i < choiceCount; i++) {
-			var row = ds_grid_value_y(global.upgrades, 0, 0, 0, ds_grid_height(global.upgrades), upgradeList[| i]);
+			var row = ds_grid_value_y(global.playerUpgrades, 0, 0, 0, ds_grid_height(global.playerUpgrades), upgradeList[| i]);
 			
 			var c = c_red;
 			//If choice is selected, highlight
@@ -117,7 +117,7 @@ switch(state) {
 		
 		starty += 10 + string_height(killString);
 		
-		draw_text(startx, starty, "Total: " + string(value));
+		draw_text(startx, starty, "Total: " + string(total));
 		
 		totalValue = total;
 		

@@ -44,7 +44,7 @@ if(houseUpgradesMenuBool) {
 			
 			var xx = oGame.houseUpgrades[# houseUpgradeCols.coordinates, i][0];
 			var yy = oGame.houseUpgrades[# houseUpgradeCols.coordinates, i][1];
-			var sDimensions = sprite_get_width(sHouseUpgrade);
+			var sDimensions = sprite_get_width(oGame.houseUpgrades[# houseUpgradeCols.sprite, i]);
 			var cost = oGame.houseUpgrades[# houseUpgradeCols.cost, i];
 			var balance = oGame.bills - houseUpgradeCosts;
 			
