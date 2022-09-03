@@ -13,8 +13,8 @@ if(houseUpgradesMenuBool) {
 			var starty = vHeight * 0.1;
 			var menuWidth = vWidth - 2*startx;
 			var menuHeight = vHeight - 2*starty;
-			var buttonWidth = 64;
-			var buttonHeight = 32;
+			var buttonWidth = 80;
+			var buttonHeight = 50;
 			xx = startx + menuWidth - buttonWidth;
 			yy = starty + menuHeight - buttonHeight;
 		

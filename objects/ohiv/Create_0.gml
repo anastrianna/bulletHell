@@ -7,4 +7,4 @@ aoeRangeFactor = 0.5;
 
 targetsInRange = ds_list_create();
 
-ds_list_add(availableMutations, "Immuno Compromise", "Infestation");
+ds_list_add(availableMutations, "Immuno Compromise");

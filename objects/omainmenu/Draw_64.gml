@@ -1,6 +1,8 @@
 //Draw Background
 var vWidth = camera_get_view_width(view_camera[0]);
 var vHeight = camera_get_view_height(view_camera[0]);
+var camx = camera_get_view_x(view_camera[0]);
+var camy = camera_get_view_y(view_camera[0]);
 var centerx = vWidth/2;
 var centery = vHeight/2;
 	
@@ -12,32 +14,42 @@ if(houseUpgradesMenuBool) {
 	var menuWidth = vWidth - 2*startx;
 	var menuHeight = vHeight - 2*starty;
 	var text = "Bills: ";
-	if(oGame.bills != 0) { text += "-"; }
 	
 	rectangleWithOutline(startx, starty, startx + menuWidth, starty + menuHeight, c, cc);
 	
 	var xx = vWidth/2;
 	var yy = starty + 20;
 	draw_set_font(fMenus);
-	draw_text_color(xx, yy, text + string(oGame.bills), c, c, c, c, 1);
+	draw_set_halign(fa_right);
+	draw_set_valign(fa_middle);
+	draw_set_color(c_white);
+	draw_text(xx, yy, text);
+	
+	text = ""; 
+	draw_set_halign(fa_left);
+	draw_set_color(c_white);
+	if(oGame.bills) { 
+		draw_set_color(c_red);
+		text += "-";
+	}
+	text += string(oGame.bills);
+	draw_text(xx, yy, text);
 	
 	if(houseUpgradePendingBool) {
 		yy += 20;
-		c = c_green;
-		draw_text_color(xx, yy, "+" + string(houseUpgradeCosts), c, c, c, c, 1);
+		draw_set_color(c_green);
+		draw_text(xx, yy, "+" + string(houseUpgradeCosts));
 		
-		var buttonWidth = 64;
-		var buttonHeight = 32;
+		var buttonWidth = 80;
+		var buttonHeight = 50;
 		xx = startx + menuWidth - buttonWidth;
 		yy = starty + menuHeight - buttonHeight;
-		c = c_white;
-		cc = c_grey;
 		
 		rectangleWithOutline(xx, yy, xx+buttonWidth, yy+buttonHeight, c, cc);
 		
 		draw_set_halign(fa_center);
-		draw_set_valign(fa_middle);
 		draw_set_font(fMenus);
+		draw_set_color(c_white);
 		draw_text(xx+(buttonWidth/2), yy+(buttonHeight/2), "CONFIRM");
 	}
 
@@ -89,6 +101,7 @@ if(houseUpgradesMenuBool) {
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_middle);
 		draw_set_font(fHouseUpgrade);
+		draw_set_color(c_white);
 		draw_text(centerx + xx, centery + yy, name);
 	}
 	
@@ -99,12 +112,12 @@ if(houseUpgradesMenuBool) {
 		var desc = oGame.houseUpgrades[# houseUpgradeCols.description, i];
 		var sDimensions = sprite_get_width(oGame.houseUpgrades[# houseUpgradeCols.sprite, i]);
 		
-		if(point_in_rectangle(mouse_x, mouse_y, uiX(xx - sDimensions/2), uiY(yy - sDimensions/2), uiX(xx + sDimensions/2), uiY(yy + sDimensions/2))) {
+		if(point_in_rectangle(mouse_x - camx, mouse_y - camy, centerx + xx - sDimensions/2, centery + yy - sDimensions/2, centerx + xx + sDimensions/2, centery + yy + sDimensions/2)) {
 			var cost = oGame.houseUpgrades[# houseUpgradeCols.cost, i];
 			desc += "\nCost: " + string(cost);
-			var startx = mouse_x  - camera_get_view_x(view_camera[0]);
-			var starty = mouse_y  - camera_get_view_y(view_camera[0]);
-			createTipTextbox(startx, starty, desc);	
+			var startx = mouse_x  - camx;
+			var starty = mouse_y  - camy;
+			createTipTextbox(startx, starty, desc);
 		}
 	}
 } else {
@@ -126,15 +139,15 @@ if(houseUpgradesMenuBool) {
 		draw_set_halign(fa_right);
 		repeat (dsHeight) {
 			lty = starty + (yy*yBuffer);
-			c = c_white;
+			draw_set_color(c_white);
 			xo = 0;
 	
 			if (yy == menuOption[page]) {
-				c = c_red;
+				draw_set_color(c_white);
 				xo = -(xBuffer/2);
 			}
 	
-			draw_text_color(ltx+xo, lty, dsGrid[# 0, yy], c, c, c, c, 1);
+			draw_text(ltx+xo, lty, dsGrid[# 0, yy]);
 			yy++;
 		}
 		draw_line(startx, starty - yBuffer, startx, lty+yBuffer);
@@ -142,14 +155,14 @@ if(houseUpgradesMenuBool) {
 	else {
 		repeat (dsHeight) {
 			lty = starty + (yy*yBuffer);
-			c = c_white;
+			draw_set_color(c_white);
 	
 			if (yy == menuOption[page]) {
-				c = c_red;
+				draw_set_color(c_red);
 			}
 	
 			draw_rectangle_color(ltx-vWidth*.2, lty-yBuffer/2+padding, ltx+vWidth*.2, lty+yBuffer/2-padding, c_dkgray, c_dkgray, c_dkgray, c_dkgray, false);
-			draw_text_color(ltx, lty, dsGrid[# 0, yy], c, c, c, c, 1);
+			draw_text(ltx, lty, dsGrid[# 0, yy]);
 			yy++;
 		}
 	}
@@ -170,22 +183,22 @@ if(houseUpgradesMenuBool) {
 			
 				if (currentVal == 0) leftShift = "";
 				if (currentVal == array_length_1d(currentArray)-1) rightShift = "";
-				c = c_white;
+				draw_set_color(c_white)
 			
-				if (yy == menuOption[page]) { c = c_yellow; }
-				draw_text_color(rtx, rty, leftShift + currentArray[currentVal] + rightShift, c, c, c, c, 1);
+				if (yy == menuOption[page]) { draw_set_color(c_yellow); }
+				draw_text(rtx, rty, leftShift + currentArray[currentVal] + rightShift);
 				break;
 			case menuElementType.slider:
 				var len = 64;
 				var currentVal = dsGrid[# 3, yy];
 				var currentArray = dsGrid[# 4, yy];
 				var circlePos = ((currentVal - currentArray[0]) / (currentArray[1] - currentArray[0]));
-				c = c_white;
+				draw_set_color(c_white)
 			
 				draw_line_width(rtx, rty, rtx + len, rty, 2);
-				if (yy == menuOption[page]) { c = c_yellow; }
+				if (yy == menuOption[page]) { draw_set_color(c_yellow) }
 				draw_circle_color(rtx + (circlePos*len), rty, 4, c, c, false);
-				draw_text_color(rtx + (len*1.2), rty, string(floor(circlePos*100)) + "%", c, c, c, c, 1);
+				draw_text(rtx + (len*1.2), rty, string(floor(circlePos*100)) + "%");
 				break;
 			case menuElementType.toggle:
 				var currentVal = dsGrid[# 3, yy];

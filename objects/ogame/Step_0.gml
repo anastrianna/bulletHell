@@ -32,6 +32,7 @@ if(room == rInit) {
 		if(!is_undefined(temp)) { 
 			if(temp) {
 				player.baseAtkDamage = floor(player.baseAtkDamage * 1.5);
+				player.atkDamage = player.baseAtkDamage;
 			}
 		}
 		
