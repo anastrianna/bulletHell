@@ -1,14 +1,25 @@
-///@desc Check for enemy collision
-event_inherited();
+/// @desc
+
+if(is_undefined(startx) || is_undefined(starty)) { exit; }
+
+if(point_distance(x, y, startx, starty) > range) {
+	instance_destroy(self);
+}
+
+speed = movSpeed;
 
 if(place_meeting(x, y, oEnemy)) {
 	with(instance_position(x, y, oEnemy)) {
-		if(currentHP > 0) {
+		if(self.currentHP > 0) {
 			dealDamage(self, other.damage);
 		
 			var row = ds_grid_value_y(global.playerUpgrades, 0, 0, 0, ds_grid_height(global.playerUpgrades), "Infection");
 			if(global.playerUpgrades[# upgradesColumns.currentTier, row]) {
 				self.infectedTime = oPlayer.infectionDuration;
+			}
+			
+			if(ds_list_find_index(oPlayer.activeMutations, "Infestation")+1) {
+				self.infested = true;	
 			}
 			instance_destroy(other);
 		}

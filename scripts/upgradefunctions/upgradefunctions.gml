@@ -1,3 +1,35 @@
+///@func playerUpgrade()
+///@desc Upgrade character upon level up or boss kill
+///@arg state State for UI
+function playerUpgrade(state) {
+	with(oUI) {
+		ds_list_clear(upgradeList);
+		var tempList = ds_list_create();
+		switch(state) {
+			case "upgrade":
+				ds_list_copy(tempList, global.availableUpgrades);
+
+				var choiceCount = min(global.maxChoices, ds_list_size(tempList));
+				for(var i = 0; i < choiceCount; i++) {
+					var temp = irandom(ds_list_size(tempList)-1);
+					ds_list_add(upgradeList, tempList[| temp]);
+					ds_list_delete(tempList, temp);
+				}
+				break;
+			case "mutation":
+				var temp = irandom(ds_list_size(oPlayer.availableMutations)-1);
+				
+				ds_list_add(upgradeList, oPlayer.availableMutations[| temp]);
+				ds_list_delete(oPlayer.availableMutations, temp);
+				break;
+		}
+		
+		ds_list_destroy(tempList);
+		
+		pauseToggle(state);
+	}
+}
+
 ///@func applyUpgrade(name)
 ///@desc Apply player upgrade
 ///@arg name Name of upgrade
