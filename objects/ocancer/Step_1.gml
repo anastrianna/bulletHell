@@ -1,5 +1,7 @@
 /// @desc
 
+if(global.pause) { exit; }
+
 var childCount = ds_list_size(children);
 if(childCount < bonusProjectiles + baseProjectiles) {
 	repeat(bonusProjectiles + baseProjectiles - childCount) {

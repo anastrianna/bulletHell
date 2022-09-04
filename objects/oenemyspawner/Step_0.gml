@@ -1,4 +1,5 @@
 /// @desc
+if(global.pause) { exit; }
 
 switch(state) {
 	case "active":

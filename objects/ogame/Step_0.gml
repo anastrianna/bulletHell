@@ -9,7 +9,9 @@ if(room == rInit) {
 		instance_create_layer(0, 0, "Processes", oMainMenu); 
 	}
 } else if(room == rGame) {
-	if(!instance_exists(oPlayer)) { 
+	if(!instance_exists(oUI)) {
+		instance_create_layer(0, 0, "Processes", oUI);
+	} else if(!instance_exists(oPlayer)) { 
 		var player = instance_create_layer(0, 0, "Instances", playerUnit);
 		
 		#region House Upgrades
@@ -43,8 +45,6 @@ if(room == rInit) {
 			}
 		}
 		#endregion House Upgrades
-	} else if(!instance_exists(oUI)) {
-		instance_create_layer(0, 0, "Processes", oUI);
 	} else if(!instance_exists(oEnemySpawner)) { 
 		instance_create_layer(0, 0, "Processes", oEnemySpawner);
 	} else if(oEnemySpawner.state == "default") { 

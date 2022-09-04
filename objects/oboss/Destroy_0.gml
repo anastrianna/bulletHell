@@ -10,14 +10,14 @@ repeat(value) {
 }
 
 if(infested) {
-	for(var i = 0; i < 5+oPlayer.bonusProjectiles; i++) {
+	for(var i = 0; i < 1+oPlayer.bonusProjectiles; i++) {
 		var spore = instance_create_layer(x, y, "Instances", oSpore);
 		spore.startx = x;
 		spore.starty = y;
 		spore.damage = oPlayer.atkDamage;
 		spore.movSpeed = oPlayer.projectileSpeed;
 		spore.range = oPlayer.range;
-		spore.direction = random(360);
+		spore.dir = random(360);
 	}
 }
 

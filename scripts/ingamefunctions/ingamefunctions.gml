@@ -10,25 +10,21 @@ function gameLoss() {
 ///@desc Toggle the game pause
 ///@arg menu Pause menu to display
 function pauseToggle(menu = "default") {
-	if(oUI.pause) {
-		oUI.pauseSurface = -1;
-		oUI.pause = false;
-		oUI.state = "default";
-		
-		instance_activate_all();
-	} else {
-		if(!sprite_exists(oUI.pauseSurface)) {
-			var surfacex = camera_get_view_x(view_camera[0]);
-			var surfacey = camera_get_view_y(view_camera[0]);
-			var surfacew = camera_get_view_width(view_camera[0]);
-			var surfaceh = camera_get_view_height(view_camera[0]);
-			oUI.pauseSurface = sprite_create_from_surface(application_surface, surfacex, surfacey, surfacew, surfaceh, 0, 0, surfacew/2, surfaceh/2);
+	global.pause = !global.pause;
+	
+	with(all) {
+		//i should be the highest number of alarms any object has
+		for(var i = 0; i < 6; i++) {
+			if(global.pause) {
+				alarmPauseTime[i] = alarm[i];	
+				alarm[i] = -1;
+			} else {
+				alarm[i] = alarmPauseTime[i];
+			}
 		}
-		oUI.pause = true;
-		
-		state = menu;
-		instance_deactivate_all(true);
 	}
+	
+	oUI.state = menu;
 }
 
 ///@func playerFaceDirection(xx, yy)
