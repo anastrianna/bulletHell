@@ -16,7 +16,7 @@ if(infested) {
 		spore.damage = oPlayer.atkDamage;
 		spore.movSpeed = oPlayer.projectileSpeed;
 		spore.range = oPlayer.range;
-		spore.direction = random(360);
+		spore.dir = random(360);
 	}
 }
 

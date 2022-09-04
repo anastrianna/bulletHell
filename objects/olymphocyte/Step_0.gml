@@ -1,27 +1,33 @@
 /// @desc
-event_inherited();
 
-if(infectedTime > -1 && alarm[1] < 0) { alarm[1] = room_speed * 1; }
+if(global.pause || !instance_exists(oPlayer)) { exit; }
+
+if(infectedTime && alarm[1] < 0) { alarm[1] = room_speed * tickRate; }
 
 switch(state) {
-	case "move":
-		if(point_distance(x, y, oPlayer.x, oPlayer.y) <= range) {
-			state = "attack";
-		}
+	case "move":				
+		var movement, dir;
 		
 		/// @desc Movement
 		var temp = irandom(1);
 
 		if(temp) {
-			direction = point_direction(x, y, oPlayer.x, oPlayer.y);	
-		} else { direction = random(360); }
+			dir = point_direction(x, y, oPlayer.x, oPlayer.y);	
+		} else { dir = random(360); }
 
 		if(!slowed) {
-			speed = movSpeed;
+			movement = movSpeed;
 		} else {
 			if(alarm[0] < 0) { alarm[0] = room_speed * oPlayer.slowDuration; }
 	
-			speed = movSpeed*((100-oPlayer.slowPower)/100); 
+			movement = movSpeed*((100-oPlayer.slowPower)/100); 
+		}
+		
+		x += lengthdir_x(movement, dir);
+		y += lengthdir_y(movement, dir);
+		
+		if(point_distance(x, y, oPlayer.x, oPlayer.y) <= range) {
+			state = "attack";
 		}
 		break;
 	case "attack":

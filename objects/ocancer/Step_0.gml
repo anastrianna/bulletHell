@@ -1,5 +1,7 @@
 /// @desc
 
+if(global.pause) { exit; }
+
 getInput();
 
 var row = ds_grid_value_y(global.playerUpgrades, 0, 0, 0, ds_grid_height(global.playerUpgrades), "Health Regen");

@@ -1,6 +1,7 @@
 /// @desc
+if(!instance_exists(oPlayer)) { exit; }
 
-if(pause) {
+if(global.pause) {
 	var vWidth = camera_get_view_width(view_camera[0]);
 	var vHeight = camera_get_view_height(view_camera[0]);
 	
@@ -80,10 +81,8 @@ if(pause) {
 				starty = (vHeight - menuHeight)/2 + menuHeight - (10 + buttonHeight);
 		
 				if(point_in_rectangle(mouse_x, mouse_y, uiX(startx), uiY(starty), uiX(startx+buttonWidth), uiY(starty+buttonHeight))) { 
-					oUI.pauseSurface = -1;
 					oUI.pause = false;
 					oUI.state = "default";
-					oUI.player = -1;
 		
 					instance_activate_all();
 					

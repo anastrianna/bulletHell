@@ -15,7 +15,7 @@ for(var i = 0; i <= oPlayer.bonusProjectiles; i++) {
 	proj.damage = atkDamage;
 	proj.movSpeed = projectileSpeed;
 	proj.range = range;
-	proj.direction = point_direction(x, y, mouse_x, mouse_y) + spread;
+	proj.dir = point_direction(x, y, mouse_x, mouse_y) + spread;
 
 	if(ds_list_find_index(oPlayer.activeMutations, "Reverse Shot")+1) {
 		proj = instance_create_layer(x, y, "Instances", oSpore);
@@ -24,6 +24,6 @@ for(var i = 0; i <= oPlayer.bonusProjectiles; i++) {
 		proj.damage = atkDamage;
 		proj.movSpeed = projectileSpeed;
 		proj.range = range;
-		proj.direction = point_direction(mouse_x, mouse_y, x, y) + spread;
+		proj.dir = point_direction(mouse_x, mouse_y, x, y) + spread;
 	}
 }
