@@ -5,7 +5,7 @@ if(state == "attack" && instance_exists(oPlayer)) {
 	antibody.starty = y;
 	antibody.dir = point_direction(x, y, oPlayer.x, oPlayer.y);
 	antibody.movSpeed = projectileSpeed;
-	antibody.range = 300;
+	antibody.range = 500;
 }
 
 if(point_distance(x, y, oPlayer.x, oPlayer.y) > range) {

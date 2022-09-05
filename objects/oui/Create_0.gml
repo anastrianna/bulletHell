@@ -2,7 +2,6 @@
 
 state = "default";
 global.pause = false;
-pauseSurface = -1;
 
 upgradeList = ds_list_create();
 upgradeChoice = -1;

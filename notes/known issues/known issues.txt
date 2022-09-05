@@ -1,0 +1,4 @@
+- Upgrade choice remains after confirming upgrade, causeing it to be pre selected in future upgrades
+	*Probably best to rework upgradeChoice in oUI
+	
+- Some draw_texts need draw_set_font before them

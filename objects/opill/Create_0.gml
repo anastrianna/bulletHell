@@ -1,9 +1,11 @@
 /// @desc
 event_inherited();
 
-maxHP = 50;
+maxHP = 500;
 currentHP = maxHP;
-value = 10;
+value = 100;
 
 baseMovSpeed = 1;
 movSpeed = baseMovSpeed;
+
+walkDelay = 3;

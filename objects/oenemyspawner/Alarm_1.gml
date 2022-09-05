@@ -1,8 +1,12 @@
 /// @desc Minute timer
 
+if(minutes == 0) { gameEnd(true); }
+
 minutes -= 1;
 
-if(minutes == 17) {
+if(waveControl[# waveControlCols.endTime, wave] > minutes) { wave += 1; }
+
+if(waveControl[# waveControlCols.isBoss, wave]) {
 	switch(minutes) {
 		case 17:
 			bossType = oPill;

@@ -1,3 +1,3 @@
 /// @desc Game end screen
 
-gameLoss();
+gameEnd();

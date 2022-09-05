@@ -63,13 +63,22 @@ function applyUpgrade(name) {
 		case "Range":
 			oPlayer.range += oPlayer.baseRange/2;
 			break;
+		case "Pickup Radius":
+			oPlayer.pickupRadius += oPlayer.basePickupRadius;
+			break;
 	}
 	
 	var row = ds_grid_value_y(global.playerUpgrades, 0, 0, 0, ds_grid_height(global.playerUpgrades), name);
 	global.playerUpgrades[# upgradesColumns.currentTier, row] += 1;
 	
+	if(!(ds_list_find_index(global.activeUpgrades, name)+1)) { ds_list_add(global.activeUpgrades, name); }
+	
+	//Remove upgrade from available upgrades list if max tiers and check for unlocked upgrades
 	if(global.playerUpgrades[# upgradesColumns.currentTier, row] == global.playerUpgrades[# upgradesColumns.maxTier, row]) {
 		ds_list_delete(global.availableUpgrades, ds_list_find_index(global.availableUpgrades, name));
+		
+		var unlock = global.playerUpgrades[# upgradesColumns.unlock, row];
+		if(is_string(unlock)) { ds_list_add(global.availableUpgrades, unlock); }
 	}
 }
 
@@ -91,9 +100,15 @@ function applyMutation(name) {
 ///@arg txt Text to add
 ///@arg tier Current tier
 function fixUpgradeName(txt, tier) {
-	txt += " ";
+	txt += "";
+	if(!tier) {
+		return txt;
+	} else {
+		txt += " ";	
+	}
+	
 	if(tier < 3) { 
-		for(var i = 0; i <= tier; i++) { txt += "I"; } 
+		for(var i = 0; i < tier; i++) { txt += "I"; } 
 	} else if(tier == 3) {
 		txt += "IV";
 	} else if(tier == 4) {
