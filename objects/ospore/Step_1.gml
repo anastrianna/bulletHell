@@ -19,8 +19,8 @@ if(place_meeting(x, y, oEnemy)) {
 				self.infectedTime = oPlayer.infectionDuration;
 			}
 			
-			if(ds_list_find_index(oPlayer.activeMutations, "Infestation")+1) {
-				self.infested = true;	
+			if(other.infestor) {
+				self.infested = true;
 			}
 			instance_destroy(other);
 		}

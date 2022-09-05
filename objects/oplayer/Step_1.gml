@@ -4,6 +4,10 @@ event_inherited();
 
 if(experience >= levelCost && ds_list_size(global.availableUpgrades)) { 
 	experience -= levelCost;
-	levelCost = floor(levelCost * 1.5);
+	var levelScale = 2;
+	if(levelCost > 200) {
+		levelScale = 1.5;
+	}
+	levelCost = floor(levelCost * levelScale);
 	playerUpgrade("upgrade");
 }

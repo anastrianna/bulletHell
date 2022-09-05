@@ -556,7 +556,7 @@
     "path": "folders/Fonts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "fLoss",
+  "name": "fGameEnd",
   "tags": [],
   "resourceType": "GMFont",
 }

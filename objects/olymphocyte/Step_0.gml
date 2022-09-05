@@ -1,11 +1,11 @@
 /// @desc
 
+event_inherited();
 if(global.pause || !instance_exists(oPlayer)) { exit; }
 
-if(infectedTime && alarm[1] < 0) { alarm[1] = room_speed * tickRate; }
-
 switch(state) {
-	case "move":				
+	case "move":
+		if(alarm[3] < 0) { alarm[3] = -1; }
 		var movement, dir;
 		
 		/// @desc Movement
@@ -27,6 +27,7 @@ switch(state) {
 		y += lengthdir_y(movement, dir);
 		
 		if(point_distance(x, y, oPlayer.x, oPlayer.y) <= range) {
+			if(alarm[3] < 0) { alarm[3] = room_speed * baseAtkSpeed/2; }
 			state = "attack";
 		}
 		break;

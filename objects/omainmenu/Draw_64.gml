@@ -115,8 +115,8 @@ if(houseUpgradesMenuBool) {
 		if(point_in_rectangle(mouse_x - camx, mouse_y - camy, centerx + xx - sDimensions/2, centery + yy - sDimensions/2, centerx + xx + sDimensions/2, centery + yy + sDimensions/2)) {
 			var cost = oGame.houseUpgrades[# houseUpgradeCols.cost, i];
 			desc += "\nCost: " + string(cost);
-			var startx = mouse_x  - camx;
-			var starty = mouse_y  - camy;
+			var startx = mouse_x - camx;
+			var starty = mouse_y - camy;
 			createTipTextbox(startx, starty, desc);
 		}
 	}

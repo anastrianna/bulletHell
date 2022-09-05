@@ -71,10 +71,11 @@ function createGrid() {
 	return dsGridId;
 }
 
-///@func createPopup( text )
+///@func createPopup(text, font)
 ///@desc Create popup with given text
 ///@arg text Text to be dispayed in popup
-function createPopup(text) {
+///@arg font Font for text in popup
+function createPopup(text, font) {
 	var vWidth = camera_get_view_width(view_camera[0]);
 	var vHeight = camera_get_view_height(view_camera[0]);
 	var camx = camera_get_view_x(view_camera[0]);
@@ -84,6 +85,9 @@ function createPopup(text) {
 	var boxHeight = 0.3 * vHeight;
 	
 	rectangleWithOutline(camx + (vWidth - boxWidth)/2, camy + (vHeight - boxHeight)/2, camx + boxWidth + (vWidth - boxWidth)/2, camy + boxHeight + (vHeight - boxHeight)/2, c_black, c_grey);
+	draw_set_font(font);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
 	draw_text(camx + vWidth/2, camy + vHeight/2, text);
 }
 
@@ -146,7 +150,7 @@ function uiY(uiy) {
 function stringRise(offx, offy, str) {
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
-	draw_set_font(fRisingPopup);
+	draw_set_font(fDescriptions);
 	draw_set_color(c_black);
 	draw_text(x+offx, y-offy-riseOffset, str);
 	riseOffset++;
@@ -198,23 +202,23 @@ function createTipTextbox(startx, starty, text) {
 	var vWidth = camera_get_view_width(view_camera[0]);
 	var vHeight = camera_get_view_height(view_camera[0]);
 	var padding = 5;
-	var triangleHeight = 20;
+	var triangleHeight = -20;
 	var textWidth = 200;
-	var down = true;
-	var maxHeight = vHeight - starty;
+	var down = false;
+	var maxHeight = starty;
 	var maxTextWidth = vWidth-3-padding*2;
-	
-	if(vHeight/2 < starty) { 
-		down = false; 
-		maxHeight = starty;	
-		triangleHeight = -triangleHeight;
-	}
 	
 	draw_set_font(fDescriptions);
 	while(string_height_ext(text, -1, textWidth) + abs(triangleHeight) + 2*padding > maxHeight) {
-		textWidth = min(textWidth+50, maxTextWidth);
-		if(textWidth == maxTextWidth) {
-			break;	
+		if(!down && starty < vWidth/2) {
+			down = true; 
+			maxHeight = vHeight - starty;	
+			triangleHeight = -triangleHeight;
+		} else {
+			textWidth = min(textWidth+50, maxTextWidth);
+			if(textWidth == maxTextWidth) {
+				break;	
+			}
 		}
 	}
 	var boxHeight = string_height_ext(text, -1, textWidth) + 2*padding;
@@ -243,6 +247,16 @@ function createTipTextbox(startx, starty, text) {
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 	draw_text_ext(xx + (boxWidth/2), starty + triangleHeight + (boxHeight/2), text, -1, textWidth);
+}
+
+///@func timerNumberString(number)
+///@desc Turn number value into timer string
+///@arg number Number value to turn into string
+function timerNumberString(number) {
+	var temp = "";
+	if(number < 10) { temp += "0"; }
+	temp += string(number);
+	return temp;
 }
 
 ///func doNothing()

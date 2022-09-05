@@ -1,10 +1,14 @@
-///@func gameLoss()
+///@func gameLoss(win)
 ///@desc Game loss process
-function gameLoss() {
+///@arg win Bool if player won
+function gameEnd(win = false) {
 	with(oUI) {
-		pauseToggle("game loss");
+		victory = win;
+		pauseToggle("game end");
 	}
 }
+
+
 
 ///@func pauseToggle()
 ///@desc Toggle the game pause
@@ -13,13 +17,15 @@ function pauseToggle(menu = "default") {
 	global.pause = !global.pause;
 	
 	with(all) {
-		//i should be the highest number of alarms any object has
-		for(var i = 0; i < 6; i++) {
-			if(global.pause) {
-				alarmPauseTime[i] = alarm[i];	
-				alarm[i] = -1;
-			} else {
-				alarm[i] = alarmPauseTime[i];
+		if(!object_index == oEnemySpawner) {
+			//i should be the highest number of alarms any object has
+			for(var i = 0; i < 6; i++) {
+				if(global.pause) {
+					alarmPauseTime[i] = alarm[i];	
+					alarm[i] = -1;
+				} else {
+					alarm[i] = alarmPauseTime[i];
+				}
 			}
 		}
 	}

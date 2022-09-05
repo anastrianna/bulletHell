@@ -59,3 +59,8 @@ switch(state) {
 		}
 		break;
 }
+
+if(cancel) { 
+	keyboard_clear(vk_escape);
+	pauseToggle("pause");
+}

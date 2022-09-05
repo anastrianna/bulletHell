@@ -13,6 +13,6 @@ switch(state) {
 		y += lengthdir_y(movement, dir);
 		break;
 	case "default":
-		if(instance_exists(oPlayer) && point_distance(x, y, oPlayer.x, oPlayer.y) < 50) { state = "acquiring"; }
+		if(instance_exists(oPlayer) && point_distance(x, y, oPlayer.x, oPlayer.y) < oPlayer.pickupRadius) { state = "acquiring"; }
 		break;
 }

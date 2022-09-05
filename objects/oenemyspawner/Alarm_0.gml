@@ -1,14 +1,11 @@
 /// @desc Spawn enemies
 
-//0 - top, 1 - right, 2 - down, 3 - left 
-var quadrant = 0;
+var difficulty = maxTime - minutes;
 
-var difficulty = max(floor((maxTime - minutes)/2), 1);
+var neutroCount = waveControl[# waveControlCols.neutroCount, wave];
+if(neutroCount && instance_number(oNeutrophil) >= waveControl[# waveControlCols.neutroMax, wave]) { neutroCount = max(1, neutroCount - 2); }
 
-var enemyCount = 4;
-if(instance_exists(oBoss)) { enemyCount = 2; }
-
-repeat(enemyCount) {
+repeat(neutroCount) {	
 	var enemyCoordinates = generateEnemySpawn(quadrant);
 
 	if(quadrant == 3) {
@@ -21,11 +18,15 @@ repeat(enemyCount) {
 	enemy.value = enemy.value * ceil((maxTime - minutes)/2);
 }
 
-if(minutes < 19 && instance_number(oLymphocyte) < 10) {
+if(!lymphoDelay && instance_number(oLymphocyte) < waveControl[# waveControlCols.lymphoMax, wave]) {	
 	var enemyCoordinates = generateEnemySpawn(irandom(3));
 	
 	var enemy = instance_create_layer(enemyCoordinates[0], enemyCoordinates[1], "Instances", oLymphocyte);
 	enemy.maxHP = enemy.maxHP * difficulty;
 	enemy.currentHP = enemy.maxHP;
 	enemy.value = enemy.value * ceil((maxTime - minutes)/2);
+	
+	lymphoDelay = waveControl[# waveControlCols.lymphoDelay, wave];
+} else {
+	lymphoDelay--;	
 }

@@ -7,7 +7,13 @@ if(global.pause) {
 	
 	getInput();
 	
-	switch(state) {	
+	switch(state) {
+		case "pause":
+			if(cancel) { 
+				keyboard_clear(vk_escape);
+				pauseToggle();
+			}
+			break;
 		case "upgrade":
 			if(inspectButton) {
 				var choiceCount = ds_list_size(upgradeList);
@@ -72,7 +78,7 @@ if(global.pause) {
 				}
 			}
 			break;
-		case "game loss":
+		case "game end":
 			if(inspectButton) {
 				var menuHeight = vHeight - vHeight*0.2;
 				var buttonWidth = 128;
